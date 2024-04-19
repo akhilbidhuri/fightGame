@@ -184,7 +184,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 816266204}
   - component: {fileID: 816266203}
   - component: {fileID: 816266202}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,8 +339,8 @@ Transform:
   m_GameObject: {fileID: 816266201}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41, y: -2.38, z: 0}
-  m_LocalScale: {x: 12.329657, y: 0.76975495, z: 1}
+  m_LocalPosition: {x: -1.89, y: -3.35, z: 0}
+  m_LocalScale: {x: 15.129722, y: 0.76975495, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 973829333}
   - component: {fileID: 973829334}
   - component: {fileID: 973829335}
+  - component: {fileID: 973829336}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -372,7 +373,7 @@ Transform:
   m_GameObject: {fileID: 973829332}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalPosition: {x: 0, y: -0.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -451,6 +452,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &973829336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973829332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623150493e0dd9744a262aa3fbb1203c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1523868839
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +475,7 @@ GameObject:
   - component: {fileID: 1523868842}
   - component: {fileID: 1523868841}
   - component: {fileID: 1523868840}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,8 +588,8 @@ Transform:
   m_GameObject: {fileID: 1523868839}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.2351, y: -0.8881, z: 0}
-  m_LocalScale: {x: 3.3449268, y: 5.8230467, z: 1}
+  m_LocalPosition: {x: 7.4481, y: -0.8881, z: 0}
+  m_LocalScale: {x: 3.7710707, y: 5.8230467, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -613,9 +626,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  jumpForce: 7
-  isMoving: 0
-  anim: {fileID: 973829335}
+  jumpForce: 12
+  dashSpeed: 25
+  dashDuration: 0.25
+  dashCooldown: 10
+  groundCheckDistance: 2.2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!50 &1534958476
 Rigidbody2D:
   serializedVersion: 4
@@ -631,8 +649,8 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 3.5
+  m_Material: {fileID: 6200000, guid: 0a473076a53efce4687dc5f30ac3471e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -652,7 +670,7 @@ Transform:
   m_GameObject: {fileID: 1534958474}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.59, y: -0.7351, z: 0}
+  m_LocalPosition: {x: -0.59, y: -0.78, z: 0}
   m_LocalScale: {x: 0.9803, y: 0.9381, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -691,7 +709,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.4479306, y: -0.21813738}
+  m_Offset: {x: -0.4479306, y: -1.181374}
   m_Size: {x: 1.1388508, y: 2.2362747}
   m_Direction: 0
 --- !u!1660057539 &9223372036854775807
