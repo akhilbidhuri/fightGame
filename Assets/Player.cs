@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     private float xInput;
-    private Rigidbody2D rb;
+    [Header("Move Info")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
-    private Animator anim;
-    private int facingDirecction = 1;
-    private bool facingRight = true;
 
     [Header("Dash Info")]
     [SerializeField] private float dashSpeed;
@@ -19,11 +16,6 @@ public class Player : MonoBehaviour
     private float dashTime;
     private float dashCooldownTimer;
 
-    [Header("Collision Info")]
-    [SerializeField] private float groundCheckDistance;
-    [SerializeField] private LayerMask whatIsGround;
-    private bool isGrounded;
-
     [Header("Attack Info")]
     private float comboTime = .3f;
     private float comboTimeWindow;
@@ -31,18 +23,16 @@ public class Player : MonoBehaviour
     private int comboCounter;
 
 
-    void Start()
+    protected override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponentInChildren<Animator>();
+        base.Start();
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         Movement();
         CheckInput();
-
-        CollisionChecks();
 
         dashTime -= Time.deltaTime;
         dashCooldownTimer -= Time.deltaTime;
@@ -50,11 +40,6 @@ public class Player : MonoBehaviour
        
         FlipController();
         AnimatorController();
-    }
-
-    private void CollisionChecks()
-    {
-        isGrounded = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsGround);
     }
 
     private void CheckInput()
@@ -126,23 +111,12 @@ public class Player : MonoBehaviour
         anim.SetInteger("comboCounter", comboCounter);
     }
 
-    private void Flip() {
-        facingDirecction *= -1;
-        facingRight = !facingRight;
-        transform.Rotate(0, 180, 0);
-    }
-
     private void FlipController()
     {
         if (rb.velocity.x > 0 && !facingRight)
             Flip();
         else if (rb.velocity.x < 0 && facingRight)
             Flip();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y -  groundCheckDistance));
     }
 
     public void AttackOver()
